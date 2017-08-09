@@ -1,16 +1,25 @@
-<<<<<<< HEAD
-# 这是我第一次写开源项目
+# ReactNative 仿豆瓣电影APP
 
-## 希望大家能够喜欢
+## 运行
 
-阿达水陆大会厉害撒阿萨德撒
-=======
-<<<<<<< HEAD
-asd asd asd 阿萨德阿萨德撒的阿萨德是12
-=======
-# 这是我第一次写开源项目
+ - 先确保你已安装好了React Native 所需的依赖环境
+ - 在根目录下执行 npm install
+ - 在执行 react-native run-ios
 
-## 希望大家能够喜欢
->>>>>>> 更改REMOME文件
-git pull --rebase origin master
->>>>>>> temp-branch
+## 效果图
+
+![](./src/img/a.gif)
+
+![](./src/img/b.gif)
+
+![](./src/img/c.gif)
+
+![](./src/img/d.gif)
+
+
+
+## 待完善
+
+ - 警告提示的问题
+ - 功能不完善
+ - 暂不适配 android
