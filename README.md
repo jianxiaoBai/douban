@@ -1,8 +1,8 @@
 # ReactNative 仿豆瓣电影APP
 
 ## 目录结构
-
-├── README.md
+```
+├── README.mdasd
 ├── __tests__
 │   ├── index.android.js
 │   └── index.ios.js
@@ -29,18 +29,18 @@
 ├── package.json
 ├── src
 │  │   ├── commons
-│  │   └── Ranking.js
+│  │   └── Ranking.js                                       影片排行组件
 │  ├── components
-│  │   ├── Detail.js
-│  │   ├── HotList.js
-│  │   ├── My.js
-│  │   ├── PlayList.js
-│  │   ├── SearchIng.js
-│  │   ├── SearchInput.js
-│  │   ├── Seek.js
-│  │   ├── SoonList.js
-│  │   └── Star.js
-│  ├── img
+│  │   ├── Detail.js                                        影片详情页
+│  │   ├── HotList.js                                       热门列表
+│  │   ├── My.js                                            我的模块
+│  │   ├── PlayList.js                                      播放列表
+│  │   ├── SearchIng.js                                     搜索时触发的组件
+│  │   ├── SearchInput.js                                   搜索框
+│  │   ├── Seek.js                                          正在热映
+│  │   ├── SoonList.js                                      即将上映
+│  │   └── Star.js                                          星星组件
+│  ├── img                                                  效果图
 │  │   ├── a.gif
 │  │   ├── b.gif
 │  │   ├── c.gif
@@ -59,6 +59,8 @@
 │  ├── index.js
 │  └── uilts
 └── yarn.lock
+```
+
 ## 运行
 
  - 先确保你已安装好了React Native 所需的依赖环境
