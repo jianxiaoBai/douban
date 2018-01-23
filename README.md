@@ -1,5 +1,9 @@
 # ReactNative 仿豆瓣电影APP
 
+<<<<<<< HEAD
+=======
+.
+>>>>>>> f45ede779857a221b9f94c217af30446e2a9780f
 ├── README.md
 ├── __tests__
 │   ├── index.android.js
@@ -57,7 +61,6 @@
 │  ├── index.js
 │  └── uilts
 └── yarn.lock
-
 ## 运行
 
  - 先确保你已安装好了React Native 所需的依赖环境
