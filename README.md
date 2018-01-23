@@ -1,5 +1,7 @@
 # ReactNative 仿豆瓣电影APP
 
+## 目录结构
+
 ├── README.md
 ├── __tests__
 │   ├── index.android.js
@@ -57,7 +59,6 @@
 │  ├── index.js
 │  └── uilts
 └── yarn.lock
-
 ## 运行
 
  - 先确保你已安装好了React Native 所需的依赖环境
