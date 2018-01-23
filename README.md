@@ -1,7 +1,14 @@
 # ReactNative 仿豆瓣电影APP
 
+<<<<<<< HEAD
 ## 目录结构
 
+=======
+<<<<<<< HEAD
+=======
+.
+>>>>>>> f45ede779857a221b9f94c217af30446e2a9780f
+>>>>>>> cf3c68b4c8ffd04a8b8f990a65ff729f70d7417c
 ├── README.md
 ├── __tests__
 │   ├── index.android.js
