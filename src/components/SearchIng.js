@@ -76,22 +76,28 @@ await fetch(`https://api.douban.com/v2/movie/search?q=${text}&apikey=0b2bdeda43b
         }}>
           <View style={styles.search}>
             <Icon style={styles.searchIcon} name="search" size={15} color="#8B8B8B"/>
-            <TextInput placeholder="搜索电影/电视" onChangeText={(text) => this._fullData(text)} underlineColorAndroid="transparent" autoFocus={true}/>
+            <TextInput 
+              placeholder="搜索电影/电视" 
+              onChangeText={(text) => this._fullData(text)} 
+              underlineColorAndroid="transparent" 
+              autoFocus={true}/>
           </View>
           <TouchableOpacity style={styles.cancel} onPress={() => goBack()}>
-            <Text style={{
+            <Text 
+              style={{
               color: '#73B582'
-            }}>取消</Text>
+              }}>取消</Text>
 
           </TouchableOpacity>
         </View>
-        {this.state.ready?<ActivityIndicator size="large" style={{marginTop:100}} />:
-
+        { this.state.ready ? 
+        <ActivityIndicator size="large" style={{marginTop:100}} />
+        :
         <FlatList
           style={{paddingLeft: 20,paddingRight:20}}
           data={data}
           renderItem={({item,index})=>{
-            const {title,id,rating,directors,casts,images,year,genres,pubdates} = item;
+            const { title,id,rating,directors,casts,images,year,genres,pubdates } = item;
             return(
 
               <TouchableOpacity style={{
@@ -125,6 +131,7 @@ await fetch(`https://api.douban.com/v2/movie/search?q=${text}&apikey=0b2bdeda43b
               </TouchableOpacity>
             )
           }}
+          keyExtractor={(item, index) => index}
           />
       }
 

@@ -13,7 +13,8 @@ import My from './components/My';
 import Seek from './components/Seek';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import SearchIng from './components/SearchIng';
-
+/* 为了注释烦人的调试提醒 */
+console.ignoredYellowBox = ['Remote debugger'];
 const DB_App = TabNavigator({
   热映: {
     screen: PlayList,
@@ -41,7 +42,7 @@ const DB_App = TabNavigator({
              <Icon name="user" size={20} color={tintColor}/>
          ),
      },
-  },
+  }
 }, {
   tabBarPosition: 'bottom',
   tabBarOptions: {

@@ -177,6 +177,7 @@ _fetchMore = async ()=>{
                          />
                      )
                    }}
+                  keyExtractor={(item, index) => index}
                    />
                 </View>
 
@@ -201,6 +202,7 @@ _fetchMore = async ()=>{
                          />
                      )
                    }}
+                    keyExtractor={(item, index) => index}
                    />
                }
                </View>
@@ -225,6 +227,7 @@ _fetchMore = async ()=>{
                          />
                      )
                    }}
+                    keyExtractor={(item, index) => index}
                    />
                }
                </View>
@@ -248,6 +251,7 @@ _fetchMore = async ()=>{
                          />
                      )
                    }}
+                    keyExtractor={(item, index) => index}
                    />
                }
                </View>

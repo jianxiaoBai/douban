@@ -22,24 +22,23 @@ export default class Detail extends Component {
       constructor(props){
         super(props);
         this.state={
-          num:3,
-          data:[],
-          ready:true,
+          num: 3,
+          data: [],
+          ready: true,
         }
       }
       static navigationOptions = ({ navigation }) => ({
        headerTitle:'电影',
-       headerRight:<Button title="分享" onPress={()=>alert('点击了分享')}  />,
+       headerRight: <Button title="分享" onPress={()=>alert('点击了分享')}  />,
        headerTintColor: '#fff',
-       headerStyle:{
-         backgroundColor:'#2A362C',
-         opacity:1,
+       headerStyle: {
+         backgroundColor: '#2A362C',
+         opacity: 1,
        }
      });
      // https://api.douban.com/v2/movie/subject/26363254?apikey=0b2bdeda43b5688921839c8ecb20399b&city=北京&client=something&udid=dddddddddddddddddddddd
      componentDidMount() {
        const {state:{params:{id}}} = this.props.navigation;
-
        let formData = new FormData();
        formData.append('apikey','0b2bdeda43b5688921839c8ecb20399b',)
        formData.append('city','北京',)
@@ -56,28 +55,11 @@ export default class Detail extends Component {
        })
        .then(response=>response.json())
        .then(data=>{
-         console.log(data);
-        //  let _tem = [];
-        //  let i = 0;
-        //  data.casts.map((item)=>{
-        //    console.log(item);
-        //    _tem.push({key:i,value:item})
-        //    i++;
-        //  })
-
-        //  console.log(_tem);
          this.setState({
            ready:false,
-           data:data,
+           data: data,
          });
        })
-
-        // fetch(`${yingren}/${id}`)
-        // .then(response=>response.json())
-        // .then(data=>{
-        //   console.log(data);
-        // })
-
      }
 
     render(){
@@ -95,8 +77,7 @@ export default class Detail extends Component {
             casts,
             rating,
             popular_comments
-} = this.state.data;
-// const {navigate} = this.props.navigation;
+      } = this.state.data;
       return(
         <ScrollView bounces={false} scrollEventThrottle={1} >
           {this.state.ready?<ActivityIndicator size="large" style={{marginTop:100}} />:
@@ -137,14 +118,13 @@ export default class Detail extends Component {
                 <Text style={{color:'#FFAE36'}}>想看</Text>
               </TouchableOpacity>
               <TouchableOpacity style={{
-                    padding: 10,
-                    paddingLeft:60,
-                    paddingRight:60,
-                   borderColor: '#FFAE36',
-                   borderWidth: 1,
-                   borderRadius: 5,
-                   flexDirection:'row',
-
+                  padding: 10,
+                  paddingLeft:60,
+                  paddingRight:60,
+                  borderColor: '#FFAE36',
+                  borderWidth: 1,
+                  borderRadius: 5,
+                  flexDirection:'row',
                 }}>
                 <Text style={{color:'#FFAE36'}}>看过</Text>
                 <View style={{marginTop:2}}>
@@ -155,7 +135,8 @@ export default class Detail extends Component {
             <View style={{paddingRight:10,paddingLeft:10}}>
               <View style={{marginTop:30,paddingBottom:15,flexDirection:'row',justifyContent:'space-between',borderBottomWidth:1,borderBottomColor:'#DFDFDF'}}>
                 <Text>选座购票</Text>
-                <TouchableOpacity   onPress={()=>alert('点击了购买')}>
+                <TouchableOpacity   
+                  onPress={()=>alert('点击了购买')}>
                   <Text style={{color:'#FF645A',fontSize:10}}>$33起></Text>
                 </TouchableOpacity>
               </View>
@@ -181,10 +162,20 @@ export default class Detail extends Component {
                     <View style={{marginTop:15,marginBottom:10,flexDirection:'row'}}>
                   {casts.map((x,i)=>{
                     return(
-                      <View style={{width:80,height:160,justifyContent:'center',alignItems:'center',marginRight:6}} >
-                        <Image source={{uri:x.avatars.large}} style={{width:80,height:120}} />
-                        <Text style={{lineHeight:22}} numberOfLines={1} ellipsizeMode='tail'>{x.name}</Text>
-                        <Text style={{fontSize:12,color:'#9B9B9B'}} numberOfLines={1} ellipsizeMode='tail'></Text>
+                      <View 
+                        style={{width:80,height:160,justifyContent:'center',alignItems:'center',marginRight:6}} 
+                        key={i}>
+                        <Image 
+                          source={{uri:x.avatars.large}} 
+                          style={{width:80,height:120}} />
+                        <Text 
+                          style={{lineHeight:22}} 
+                          numberOfLines={1} 
+                          ellipsizeMode='tail'>{x.name}</Text>
+                        <Text 
+                          style={{fontSize:12,color:'#9B9B9B'}} 
+                          numberOfLines={1} 
+                          ellipsizeMode='tail'></Text>
                       </View>
                     )
                   })}
@@ -198,9 +189,11 @@ export default class Detail extends Component {
                   </View>
                   <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
                     <View style={{marginTop:15,flexDirection:'row'}}>
-                  {photos.map((x)=>{
+                  {photos.map((x, i)=>{
                     return(
-                      <View style={{width:140,height:100,justifyContent:'center',alignItems:'center',marginRight:6,backgroundColor:'red'}} >
+                      <View 
+                        style={{width:140,height:100,justifyContent:'center',alignItems:'center',marginRight:6,backgroundColor:'red'}} 
+                        key={i}>
                         <Image source={{uri:x.image.replace('webp','png')}} style={{width:140,height:100}}/>
                       </View>
                     )
@@ -209,13 +202,16 @@ export default class Detail extends Component {
                   </ScrollView>
               </View>
 
-              <ScrollableTabView renderTabBar={() => <DefaultTabBar/>} tabBarUnderlineStyle={{
-                backgroundColor: '#000',
-                height: 2,
-              }} tabBarBackgroundColor='#F3F3F3' tabBarActiveTextColor='#000' tabBarInactiveTextColor='#959595' tabBarTextStyle={{
-                fontSize: 14
-              }}
-              locked={false}
+              <ScrollableTabView renderTabBar={() => <DefaultTabBar/> } 
+                tabBarUnderlineStyle={{
+                  backgroundColor: '#000',
+                  height: 2,
+                }} 
+                tabBarBackgroundColor='#F3F3F3' 
+                tabBarActiveTextColor='#000' 
+                tabBarInactiveTextColor='#959595' 
+                tabBarTextStyle={{ fontSize: 14 }}
+                locked={false}
               >
                 <View tabLabel='评论' style={{marginBottom:50,paddingLeft:15,paddingRight:15}}>
                   <View style={{flexDirection:'row',paddingTop:20,justifyContent:'space-between'}}>
@@ -227,7 +223,9 @@ export default class Detail extends Component {
 
                     {popular_comments.map((v,i)=>{
                       return(
-                          <View style={{marginTop:18,flexDirection:'row',paddingRight:20}}>
+                          <View 
+                            style={{marginTop:18,flexDirection:'row',paddingRight:20}}
+                            key={i}>
                             <View>
                               <Image source={{uri:v.author.avatar}} style={{width:40,height:40,borderRadius:20}} />
                             </View>
@@ -263,29 +261,30 @@ export default class Detail extends Component {
 
                   {popular_comments.map((v,i)=>{
                     return(
-                        <View style={{marginTop:18,flexDirection:'row',paddingRight:20}}>
-                          <View>
-                            <Image source={{uri:v.author.avatar}} style={{width:40,height:40,borderRadius:20}} />
-                          </View>
-
-                          <View style={{marginLeft:10,flex:1}}>
-                            <View style={{flexDirection:'row'}}>
-                              <Text style={{lineHeight:25}}>{v.author.name}</Text>
-                              <View style={{marginTop:8,marginLeft:4}}>
-                                <Star value={v.rating.value+'0'} width={10} height={10} />
-                              </View>
-                            </View>
-                            <Text style={{marginBottom:8,color:'#3B3B3B'}}>{v.content}</Text>
-                            <Text style={styles.smallFont}>
-                              4天前
-                            </Text>
-                          </View>
-
-                          <View style={{position:'absolute',right:0,top:0}}>
-                            <Text style={{color:'#9B9B9B'}}>👍{v.useful_count}</Text>
-                          </View>
-
+                      <View
+                        style={{ marginTop: 18, flexDirection: 'row', paddingRight: 20 }}
+                        key={i}>
+                        <View>
+                          <Image source={{uri:v.author.avatar}} style={{width:40,height:40,borderRadius:20}} />
                         </View>
+
+                        <View style={{marginLeft:10,flex:1}}>
+                          <View style={{flexDirection:'row'}}>
+                            <Text style={{lineHeight:25}}>{v.author.name}</Text>
+                            <View style={{marginTop:8,marginLeft:4}}>
+                              <Star value={v.rating.value+'0'} width={10} height={10} />
+                            </View>
+                          </View>
+                          <Text style={{marginBottom:8,color:'#3B3B3B'}}>{v.content}</Text>
+                          <Text style={styles.smallFont}>
+                            4天前
+                          </Text>
+                        </View>
+
+                        <View style={{position:'absolute',right:0,top:0}}>
+                          <Text style={{color:'#9B9B9B'}}>👍{v.useful_count}</Text>
+                        </View>
+                      </View>
                     )
                   })}
                 </View>

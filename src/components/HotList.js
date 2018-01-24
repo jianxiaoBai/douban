@@ -71,9 +71,11 @@ export default class HotList extends Component {
           data={movies}
           onRefresh={this._refreshDate}
           refreshing={this.state.refreshing}
-          key={movies.key} renderItem={({item}) => {
+          key={movies.key} 
+          renderItem={({item}) => {
             return (
-              <TouchableOpacity style={[
+              <TouchableOpacity 
+              style={[
                 styles.hotList, item.key + 1 == movies.length && styles.lastList
               ]}
               onPress={() => navigate('Detail', {

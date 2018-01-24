@@ -13,7 +13,7 @@ import {
   ActivityIndicator
 } from 'react-native';
 
-import ScrollableTabView, {DefaultTabBar, ScrollableTabBar} from 'react-native-scrollable-tab-view';
+import ScrollableTabView, { DefaultTabBar, ScrollableTabBar } from 'react-native-scrollable-tab-view';
 
   export default class SoonList extends Component {
     constructor(props) {
@@ -60,61 +60,68 @@ import ScrollableTabView, {DefaultTabBar, ScrollableTabBar} from 'react-native-s
     render() {
       const {movies} = this.state;
       const { navigate } = this.props.navigation;
-
       return (
         <View>
-          {this.state.ready
+          {
+            this.state.ready
             ? <ActivityIndicator size="large" style={styles.loadding}/>
-            : <FlatList data={movies}
-
-            onRefresh={this._refreshDate} refreshing={this.state.refreshing} key={movies.key} renderItem={({item}) => {
-              return (
-                <TouchableOpacity style={[
-                  styles.hotList, item.key + 1 == movies.length && styles.lastList
-                ]} key={item.value.id}
-                onPress={() => navigate('Detail', {
-                  id: item.id,
-                  callback: (data) => {
-                    this.setState({childState: data})
-                  }
-                })}
-                >
-                  <View style={{
-                    flex: 1
-                  }}>
-                    <Image source={{
-                      uri: item.value.images.large.replace('webp', 'png')
-                    }} style={{
-                      width: 80,
-                      height: 100
-                    }}/>
-                  </View>
-                  <View style={{
-                    flex: 2,
-                    alignItems: 'flex-start'
-                  }}>
-                    <Text style={styles.title}>{item.value.title}
-                    </Text>
-                    <Text style={styles.smallFont}>导演：{item.value.directors[0].name}</Text>
-                    <Text style={styles.smallFont}>主演：{item.value.casts.map((v) => v.name).join('/')}</Text>
-                    <Text style={{
-                      lineHeight: 20,
-                      fontSize: 13
-                    }}>{item.value.collect_count}人想看</Text>
-                  </View>
-                  <View style={{
-                    flex: 0
-                  }}>
-                    <TouchableOpacity onPress={() => alert('想看')} style={styles.pay}>
-                      <Text style={{
-                        color: '#FFAE31',
-                        fontWeight: '900'
-                      }}>想看</Text>
+            : <FlatList 
+                data={movies}
+                onRefresh={this._refreshDate} 
+                refreshing={this.state.refreshing} 
+                key={movies.key} 
+                renderItem={({item}) => {
+                  return (
+                    <TouchableOpacity 
+                    style={[
+                      styles.hotList, item.key + 1 == movies.length && styles.lastList
+                    ]} 
+                    key={item.value.id}
+                    onPress={() => navigate('Detail', {
+                      id: item.value.id,
+                      callback: (data) => {
+                        this.setState({childState: data})
+                      }
+                    })}
+                    >
+                      <View style={{
+                        flex: 1
+                      }}>
+                        <Image source={{
+                          uri: item.value.images.large.replace('webp', 'png')
+                        }} style={{
+                          width: 80,
+                          height: 100
+                        }}/>
+                      </View>
+                      <View style={{
+                        flex: 2,
+                        alignItems: 'flex-start'
+                      }}>
+                        <Text style={styles.title}>{item.value.title}
+                        </Text>
+                        <Text style={styles.smallFont}>导演：{item.value.directors[0].name}</Text>
+                        <Text style={styles.smallFont}>主演：{item.value.casts.map((v) => v.name).join('/')}</Text>
+                        <Text style={{
+                          lineHeight: 20,
+                          fontSize: 13
+                        }}>{item.value.collect_count}人想看</Text>
+                      </View>
+                      <View style={{
+                        flex: 0
+                      }}>
+                        <TouchableOpacity onPress={() => alert('想看')} style={styles.pay}>
+                          <Text style={{
+                            color: '#FFAE31',
+                            fontWeight: '900'
+                          }}>想看</Text>
+                        </TouchableOpacity>
+                      </View>
                     </TouchableOpacity>
-                  </View>
-                </TouchableOpacity>
-              )
-            }}/>}
+                  )
+                }}
+            />
+            }
         </View>
       );
     }
