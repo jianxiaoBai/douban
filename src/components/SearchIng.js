@@ -24,46 +24,33 @@ export default class MyComponent extends Component {
     super(props);
     this.state={
       ready:false,
-      data:[]
+      data:[],
+      flag: null
     }
   }
 
-  _fetchData = (text)=>{
-
- fetch(`http://api.douban.com/v2/movie/search?q=${text}`,{
-   method: 'POST',
-   headers: {
-     'Content-Type': 'application/json'
-   },
-   body:formData
- })
-    .then(response=>response.json())
-    .then(data=>{
-      this.setState({
-          ready:false,
-        });
-      return data.subjects;
-    })
+ _fullData(text) {
+  if (!text) {
+    return this.setState({ data: [] })
   }
-async _fullData(text) {
-  this.setState({ready:true})
-
-
-await fetch(`https://api.douban.com/v2/movie/search?q=${text}&apikey=0b2bdeda43b5688921839c8ecb20399b&client=something`)
-   .then(res=>res.json())
-   .then(data=>{
-     console.dir(data);
-     this.setState({data:data.subjects,ready:false})
+  clearTimeout(this.state.flag)
+   this.setState({
+    flag: setTimeout(() => {
+      this.setState({ ready: true })
+      fetch(`https://api.douban.com/v2/movie/search?q=${text}&apikey=0b2bdeda43b5688921839c8ecb20399b&client=something`)
+        .then(res => res.json())
+        .then(data => {
+          this.setState({
+            data: data.subjects,
+            ready: false
+          })
+        })
+      }, 1500)
    })
-  // alert(text)
-// var json = await this._fetchData(text);
-// console.log(json);
-// this.setState({data:json})
-// console.log(json);
 }
   render() {
-    const {navigate, goBack} = this.props.navigation;
-    const {data} = this.state;
+    const { navigate, goBack } = this.props.navigation;
+    const { data } = this.state;
     return (
       <View style={{
         paddingTop: 25,
@@ -75,14 +62,19 @@ await fetch(`https://api.douban.com/v2/movie/search?q=${text}&apikey=0b2bdeda43b
           alignItems: 'center'
         }}>
           <View style={styles.search}>
-            <Icon style={styles.searchIcon} name="search" size={15} color="#8B8B8B"/>
+            <Icon style={styles.searchIcon} 
+              name="search" 
+              size={15} 
+              color="#8B8B8B"/>
             <TextInput 
               placeholder="搜索电影/电视" 
               onChangeText={(text) => this._fullData(text)} 
               underlineColorAndroid="transparent" 
               autoFocus={true}/>
           </View>
-          <TouchableOpacity style={styles.cancel} onPress={() => goBack()}>
+          <TouchableOpacity 
+            style={styles.cancel} 
+            onPress={() => goBack()}>
             <Text 
               style={{
               color: '#73B582'
@@ -99,7 +91,6 @@ await fetch(`https://api.douban.com/v2/movie/search?q=${text}&apikey=0b2bdeda43b
           renderItem={({item,index})=>{
             const { title,id,rating,directors,casts,images,year,genres,pubdates } = item;
             return(
-
               <TouchableOpacity style={{
                 flexDirection: 'row',
                 height:60,
@@ -114,11 +105,13 @@ await fetch(`https://api.douban.com/v2/movie/search?q=${text}&apikey=0b2bdeda43b
               >
 
                 <View style={{marginRight:15}}>
-                  <Image source={{uri:images.large}} style={{
-                    width: 40,
-                    height: 40,
-                    borderRadius: 20
-                  }}/>
+                  <Image 
+                    source={{uri:images.large}} 
+                    style={{
+                      width: 40,
+                      height: 40,
+                      borderRadius: 20
+                    }}/>
                 </View>
                 <View>
                   <Text>{title}</Text>
@@ -133,8 +126,7 @@ await fetch(`https://api.douban.com/v2/movie/search?q=${text}&apikey=0b2bdeda43b
           }}
           keyExtractor={(item, index) => index}
           />
-      }
-
+        }
       </View>
     );
   }
@@ -161,6 +153,5 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     paddingRight: 5
-
   }
 });
